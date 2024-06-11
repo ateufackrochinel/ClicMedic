@@ -1,3 +1,27 @@
+# Clic Medic app 🚀
+
+Clik Medic is an application that helps patients find a specialist
+
+## Getting started
+
+Go to folder path
+
+```sh
+cd cliMedicFrontend
+```
+
+Install the project's dependencies
+
+```sh
+npm install
+```
+
+Run the app locally
+
+```sh
+npm run dev
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -22,7 +46,7 @@ export default {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
