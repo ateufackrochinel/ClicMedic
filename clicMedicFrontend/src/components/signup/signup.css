@@ -1,0 +1,19 @@
+.RegisterFormBase-container {
+  border: 1px solid #000;
+  padding: 40px;
+  border-radius: 8px;
+}
+.RegisterFormBase-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.RegisterFormBase-btn {
+  background: #000;
+  color: white;
+}
+
+.AppUI-signUpLabel {
+  color: blue;
+  cursor: pointer;
+}

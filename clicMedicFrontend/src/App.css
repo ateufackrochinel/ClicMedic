@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.App-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-form-field {
+  margin: 8px 0px;
+  border-radius: 4px;
+  padding: 8px;
+}

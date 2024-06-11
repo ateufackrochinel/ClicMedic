@@ -1,0 +1,14 @@
+.LoginFormBase-container {
+  border: 1px solid #000;
+  padding: 40px;
+  border-radius: 8px;
+}
+.LoginFormBase-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.LoginFormBase-btn {
+  background: #000;
+  color: white;
+}
