@@ -20,19 +20,21 @@ export const AppUI = () => {
   return (
     <appContext.Provider value={{ showSignUpForm, setShowSignUpForm }}>
       <AppLayout>
-        {!showSignUpForm && <Login />}
-        {showSignUpForm && <SignUp />}
-        {!showSignUpForm && (
-          <div>
-            No account :{' '}
-            <label
-              className="AppUI-signUpLabel"
-              onClick={onClickShowSignUpForm}
-            >
-              Sign up
-            </label>
-          </div>
-        )}
+        <div>
+          {!showSignUpForm && <Login />}
+          {showSignUpForm && <SignUp />}
+          {!showSignUpForm && (
+            <div>
+              No account :{' '}
+              <label
+                className="AppUI-signUpLabel"
+                onClick={onClickShowSignUpForm}
+              >
+                Sign up
+              </label>
+            </div>
+          )}
+        </div>
       </AppLayout>
     </appContext.Provider>
   );

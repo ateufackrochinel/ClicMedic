@@ -1,11 +1,6 @@
-import './App.css';
-import { AppUI } from './components/app/app';
+import { AppRouter } from './router';
 function App() {
-  return (
-    <>
-      <AppUI />
-    </>
-  );
+  return <AppRouter />;
 }
 
 export default App;
