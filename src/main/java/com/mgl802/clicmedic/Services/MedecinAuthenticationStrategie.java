@@ -2,29 +2,21 @@ package com.mgl802.clicmedic.Services;
 
 import com.mgl802.clicmedic.Modele.Authentification;
 import com.mgl802.clicmedic.Modele.Medecin;
+import com.mgl802.clicmedic.Modele.Session;
 import com.mgl802.clicmedic.Repository.AuthentificationRepository;
+import com.mgl802.clicmedic.Repository.SessionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-public class MedecinAuthenticationStrategie implements AuthentificationStrategie {
+@Service("medecin")
+public class MedecinAuthenticationStrategie extends AuthentificationStrategie {
 
-    private AuthentificationRepository authRepository;
-    public Optional<String> authentification(String Identifiant, String mdp){
+    @Autowired
+    MedecinAuthenticationStrategie(AuthentificationRepository authRepository) { this.authRepository = authRepository; }
+    protected Optional<Authentification> findAuthentification(String identifiant) {
 
-      Optional<Authentification>  optAuthentification= authRepository.findAuthentificationByMedecinNumeroEmploye(Identifiant);
-
-      if (optAuthentification.isEmpty()) {
-            return Optional.empty();
-        }else {
-
-          PasswordConfig passwordevaluete= new PasswordConfig();
-          Boolean mdpetat= passwordevaluete.comparePasswords(mdp, optAuthentification.get().getPasswordHash()) ;
-
-
-
-      }
-
-
-        return Optional.empty();
+        return authRepository.findAuthentificationByMedecinNumeroEmploye(identifiant);
     }
 }

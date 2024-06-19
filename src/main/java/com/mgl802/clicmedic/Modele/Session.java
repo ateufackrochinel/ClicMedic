@@ -3,6 +3,8 @@ package com.mgl802.clicmedic.Modele;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.security.SecureRandom;
+import java.util.Base64;
 
 @Entity
 @Table(name = "Session")
@@ -12,14 +14,14 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "TokenHash", length = 255, nullable = false, unique = true)
-    private String tokenHash;
+    @Column(name = "Token", length = 255, nullable = false, unique = true)
+    private String token;
 
     @Column(name = "DateCreation", nullable = false)
     private LocalDateTime dateCreation;
 
-    @Column(name = "DateFin", nullable = false)
-    private LocalDateTime dateFin;
+    //@Column(name = "DateFin", nullable = false)
+    //private LocalDateTime dateFin;
 
     @OneToOne
     @JoinColumn(name = "UserID", referencedColumnName = "id", nullable = false)
@@ -35,12 +37,12 @@ public class Session {
         this.id = id;
     }
 
-    public String getTokenHash() {
-        return tokenHash;
+    public String getToken() {
+        return token;
     }
 
-    public void setTokenHash(String tokenHash) {
-        this.tokenHash = tokenHash;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public LocalDateTime getDateCreation() {
@@ -51,13 +53,13 @@ public class Session {
         this.dateCreation = dateCreation;
     }
 
-    public LocalDateTime getDateFin() {
+    /*public LocalDateTime getDateFin() {
         return dateFin;
-    }
+    }*/
 
-    public void setDateFin(LocalDateTime dateFin) {
+    /*public void setDateFin(LocalDateTime dateFin) {
         this.dateFin = dateFin;
-    }
+    }*/
 
     public User getUser() {
         return user;
@@ -65,5 +67,26 @@ public class Session {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    // Helper method to generate a random token
+    private String generateToken() {
+        SecureRandom secureRandom = new SecureRandom();
+        byte[] tokenBytes = new byte[191]; // 191 bytes of data will result in 255 characters when Base64 encoded
+        secureRandom.nextBytes(tokenBytes);
+        return Base64.getUrlEncoder().withoutPadding().encodeToString(tokenBytes);
+    }
+
+    public String publicGenerateToken() {
+        return this.generateToken();
+    }
+
+    // JPA lifecycle callback to set the default values
+    @PrePersist
+    protected void onCreate() {
+        dateCreation = LocalDateTime.now();
+        if (token == null || token.isEmpty()) {
+            token = generateToken();
+        }
     }
 }

@@ -1,14 +1,22 @@
 package com.mgl802.clicmedic.Services;
 
+import com.mgl802.clicmedic.Modele.Authentification;
+import com.mgl802.clicmedic.Modele.Session;
+import com.mgl802.clicmedic.Repository.AuthentificationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
-public class PatientAuthenticationStrategie  implements AuthentificationStrategie{
+@Service("patient")
+public class PatientAuthenticationStrategie  extends AuthentificationStrategie{
 
-    public Optional<String> authentification(String Identifiant, String mdp){
+    @Autowired
+    PatientAuthenticationStrategie(AuthentificationRepository authRepository) { this.authRepository = authRepository; }
 
-          //Reussir -> renvoyer token
-        //echec ->
-        return Optional.empty();
+    protected Optional<Authentification> findAuthentification(String identifiant) {
 
+        return authRepository.findAuthentificationByPatientNumeroAssuranceMaladie(identifiant);
     }
+
 }

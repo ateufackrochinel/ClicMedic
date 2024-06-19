@@ -17,4 +17,17 @@ public interface AuthentificationRepository extends JpaRepository<Authentificati
             "WHERE m.numeroEmploye = :numeroEmploye")
     Optional<Authentification> findAuthentificationByMedecinNumeroEmploye(@Param("numeroEmploye") String numeroEmploye);
 
+    @Query("SELECT a FROM Authentification a " +
+            "JOIN a.user u " +
+            "JOIN Patient p ON p.user.id = u.id " +
+            "WHERE p.numeroAssuranceMaladie = :numeroAssuranceMaladie")
+    Optional<Authentification> findAuthentificationByPatientNumeroAssuranceMaladie(@Param("numeroAssuranceMaladie") String numeroAssuranceMaladie);
+
+    @Query("SELECT a FROM Authentification a " +
+            "JOIN a.user u " +
+            "JOIN Admin ad ON ad.user.id = u.id " +
+            "WHERE ad.adminId = :adminId")
+    Optional<Authentification> findAuthentificationByAdminAdminId(@Param("adminId") String adminId);
+
+
 }

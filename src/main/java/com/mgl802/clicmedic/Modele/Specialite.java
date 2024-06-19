@@ -16,6 +16,15 @@ public class Specialite {
     @Column(name = "Description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "Need_Greenlight", nullable = false)
+    private Boolean needGreenlight;
+
+    public Specialite(String nom, String description, Boolean needGreenlight) {
+        this.nom = nom;
+        this.description = description;
+        this.needGreenlight = needGreenlight;
+    }
+
     // Getters and Setters
 
     public UUID getId() {
@@ -41,4 +50,6 @@ public class Specialite {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Boolean getNeedGreenlight() { return needGreenlight; }
 }

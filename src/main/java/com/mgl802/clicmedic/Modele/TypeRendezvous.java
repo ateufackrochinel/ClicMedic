@@ -22,6 +22,13 @@ public class TypeRendezvous {
     @Column(name = "DureeMaximum", nullable = false)
     private int dureeMaximum;
 
+    public TypeRendezvous(String nom, String description, int dureeMinimum, int dureeMaximum) {
+        this.nom = nom;
+        this.description = description;
+        this.dureeMinimum = dureeMinimum;
+        this.dureeMaximum = dureeMaximum;
+    }
+
     // Getters and Setters
 
     public UUID getId() {
