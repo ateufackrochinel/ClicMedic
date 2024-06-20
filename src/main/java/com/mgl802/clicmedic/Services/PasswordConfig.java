@@ -1,7 +1,9 @@
 package com.mgl802.clicmedic.Services;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PasswordConfig {
 
     // Const salt value

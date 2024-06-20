@@ -2,14 +2,15 @@ package com.mgl802.clicmedic.Modele;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "User")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @Column(name = "Nom", length = 100, nullable = false)
     private String nom;
@@ -26,13 +27,22 @@ public class User {
     @Column(name = "DateAjout", nullable = false)
     private LocalDateTime dateAjout;
 
+    public User() {
+    }
+    public User(String nom, String prenom, String email, String telephone) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.telephone = telephone;
+    }
+
     // Getters and Setters
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -74,5 +84,10 @@ public class User {
 
     public void setDateAjout(LocalDateTime dateAjout) {
         this.dateAjout = dateAjout;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.dateAjout = LocalDateTime.now();
     }
 }

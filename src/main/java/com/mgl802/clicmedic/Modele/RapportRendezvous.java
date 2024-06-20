@@ -18,6 +18,18 @@ public class RapportRendezvous {
     @Column(name = "Contenu", columnDefinition = "TEXT")
     private String contenu;
 
+
+    // ...
+    public RapportRendezvous() {}
+
+    public RapportRendezvous(String contenu) {
+        this.contenu = contenu;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        dateModification = LocalDateTime.now();
+    }
     @PreUpdate
     public void updateTimestamp() {
         dateModification = LocalDateTime.now();

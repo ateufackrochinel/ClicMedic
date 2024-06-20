@@ -18,9 +18,9 @@ public class Rendezvous {
     @Column(name = "Lieu", length = 255, nullable = false)
     private String lieu;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "TypeRendezVousID", referencedColumnName = "id", nullable = false)
-    private TypeRendezvous typeRendezVous;
+    private TypeRendezvous typeRendezVous;*/
 
     @ManyToOne
     @JoinColumn(name = "PatientID", referencedColumnName = "id", nullable = false)
@@ -39,9 +39,24 @@ public class Rendezvous {
     @Column(name = "Notes", columnDefinition = "TEXT")
     private String notes;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "RapportID", referencedColumnName = "id")
     private RapportRendezvous rapport;
+
+    // ...
+
+    public Rendezvous(){
+    }
+
+    public Rendezvous(String titre, String lieu, Patient patient, Medecin medecin, LocalDateTime tempsDebut, int duree, String notes) {
+        this.titre = titre;
+        this.lieu = lieu;
+        this.patient = patient;
+        this.medecin = medecin;
+        this.tempsDebut = tempsDebut;
+        this.duree = duree;
+        this.notes = notes;
+    }
 
     // Getters and Setters
 
@@ -69,13 +84,13 @@ public class Rendezvous {
         this.lieu = lieu;
     }
 
-    public TypeRendezvous getTypeRendezVous() {
+    /*public TypeRendezvous getTypeRendezVous() {
         return typeRendezVous;
     }
 
     public void setTypeRendezVous(TypeRendezvous typeRendezVous) {
         this.typeRendezVous = typeRendezVous;
-    }
+    }*/
 
     public Patient getPatient() {
         return patient;

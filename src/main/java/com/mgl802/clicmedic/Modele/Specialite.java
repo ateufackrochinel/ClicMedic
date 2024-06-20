@@ -19,6 +19,9 @@ public class Specialite {
     @Column(name = "Need_Greenlight", nullable = false)
     private Boolean needGreenlight;
 
+    // Default constructor for JPA
+    public Specialite() {}
+
     public Specialite(String nom, String description, Boolean needGreenlight) {
         this.nom = nom;
         this.description = description;

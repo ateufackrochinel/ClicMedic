@@ -20,10 +20,13 @@ public class Session {
     @Column(name = "DateCreation", nullable = false)
     private LocalDateTime dateCreation;
 
+    @Column(name = "TypeUser", nullable = false)
+    private String typeUser;
+
     //@Column(name = "DateFin", nullable = false)
     //private LocalDateTime dateFin;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "UserID", referencedColumnName = "id", nullable = false)
     private User user;
 
@@ -88,5 +91,13 @@ public class Session {
         if (token == null || token.isEmpty()) {
             token = generateToken();
         }
+    }
+
+    public String getTypeUser() {
+        return typeUser;
+    }
+
+    public void setTypeUser(String typeUser) {
+        this.typeUser = typeUser;
     }
 }

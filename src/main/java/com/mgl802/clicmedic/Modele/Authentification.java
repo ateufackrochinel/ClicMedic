@@ -19,6 +19,12 @@ public class Authentification {
     @Column(name = "PasswordHash", length = 255, nullable = false)
     private String passwordHash;
 
+    public Authentification() {
+    }
+    public Authentification(User user, String passwordHash) {
+        this.user = user;
+        this.passwordHash = passwordHash;
+    }
 
 
     // Getters and Setters

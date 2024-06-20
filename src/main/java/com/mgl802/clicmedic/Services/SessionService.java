@@ -5,6 +5,8 @@ import com.mgl802.clicmedic.Repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class SessionService {
 
@@ -27,5 +29,9 @@ public class SessionService {
 
     public boolean isTokenExists(String token) {
         return sessionRepository.existsByToken(token);
+    }
+
+    public Optional<Session> findByToken(String token) {
+        return sessionRepository.findByToken(token);
     }
 }
