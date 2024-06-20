@@ -1,20 +1,34 @@
-const initialStates = {};
-
-export type User = {
-  nom: string;
-  prenom: string;
-  gender: string;
-  email: string;
-  telephone: string;
+export const initialValues: SignUpType = {
+  type: 'patient',
+  accountDetails: {
+    email: '',
+    nom: '',
+    prenom: '',
+    numeroAssuranceMaladie: '',
+    dateNaissance: '',
+    telephone: '',
+    mdp: '',
+    numeroEmploye: '',
+    NIMC: '',
+    telephoneBureau: '',
+    lieuTravail: '',
+    specialisation: '',
+  },
 };
+
 export type AccountDetails = {
   nom: string;
   prenom: string;
-  gender: string;
   email: string;
   telephone: string;
-  numeroAssuranceMaladie: string;
-  dateNaissance: string;
+  mdp: string;
+  numeroAssuranceMaladie?: string;
+  dateNaissance?: string;
+  specialisation?: string;
+  numeroEmploye?: string;
+  telephoneBureau?: string;
+  lieuTravail?: string;
+  NIMC?: string;
 };
 export type SignUpType = {
   type: string;

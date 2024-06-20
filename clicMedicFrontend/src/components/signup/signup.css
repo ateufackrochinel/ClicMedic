@@ -4,7 +4,9 @@
   border-radius: 8px;
   width: 400px;
 }
-.RegisterFormBase-form {
+.RegisterFormBase-form,
+.orthersMedecinProps,
+.ontherPatientProps {
   display: flex;
   flex-direction: column;
 }

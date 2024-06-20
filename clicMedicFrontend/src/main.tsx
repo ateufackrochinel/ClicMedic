@@ -6,9 +6,6 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div className="App-header">
-      <h2>Clic Medic</h2>
-    </div>
     <BrowserRouter>
       <App />
     </BrowserRouter>

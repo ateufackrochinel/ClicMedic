@@ -13,3 +13,8 @@
   background: #000;
   color: white;
 }
+.Login-checkBoxContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

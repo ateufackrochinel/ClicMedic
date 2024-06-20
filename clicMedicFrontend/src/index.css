@@ -39,6 +39,7 @@ body {
 .App-header {
   color: #747bff;
   position: static;
+  cursor: pointer;
 }
 
 h1 {

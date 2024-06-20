@@ -1,17 +1,38 @@
 import './login.css';
-import { Form, FormikProps } from 'formik';
+import { Field, Form, FormikProps } from 'formik';
 import { InputUI } from '../input';
+import { useEffect, useState } from 'react';
 export type LoginType = {
-  email: string;
-  password: string;
+  identifiant: string;
+  mdp: string;
+  userType: string;
 };
 export const LoginFormBase = ({ handleSubmit }: FormikProps<LoginType>) => {
   return (
     <div className="LoginFormBase-container">
       <h2>Login</h2>
       <Form className="LoginFormBase-form" onSubmit={handleSubmit}>
-        <InputUI placeholder="email" type="email" name="email" />
-        <InputUI placeholder="password" type="password" name="password" />
+        <InputUI
+          labelname="Identifiant"
+          placeholder="Numéro d'assurance maladie  ou Numéro d'employé"
+          type="text"
+          name="identifiant"
+        />
+        <InputUI placeholder="password" type="password" name="mdp" />
+        <div
+          role="group"
+          aria-labelledby="my-radio-group"
+          className="Login-checkBoxContainer"
+        >
+          <div>
+            <Field type="radio" name="userType" value="patient" />
+            <label>Patient</label>
+          </div>
+          <div>
+            <Field type="radio" name="userType" value="medecin" />
+            <label>Medecin</label>
+          </div>
+        </div>
         <button className="LoginFormBase-btn" type="submit">
           Login
         </button>

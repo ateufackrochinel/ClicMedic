@@ -3,25 +3,28 @@ import { Formik } from 'formik';
 
 import { LoginFormBase, LoginType } from './login-form-base';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { login } from './login.services';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const initialValues: LoginType = { email: '', password: '' };
+  const [token, setToken] = useState<{ token: string }>({ token: '' });
+  const initialValues: LoginType = {
+    userType: '',
+    mdp: '',
+    identifiant: '',
+  };
 
   const handleSubmit = (values: LoginType) => {
     const execute = async () => {
-      fetch(`${process.env.REACT_APP_CLIC_MEDIC_API_URL}/`, {
-        method: 'POST',
-        headers: {
-          Authorization: `JWT `,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
+      const response = await login(values);
+      console.log(response, 'response');
+      setToken(response);
     };
     execute();
-    console.log(values, 'values');
-    navigate('/patient');
+
+    console.log(token, 'token');
+    //navigate('/patient');
   };
   return (
     <>
