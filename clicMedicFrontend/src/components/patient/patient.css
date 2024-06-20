@@ -1,0 +1,24 @@
+.Patient-container {
+  width: 100%;
+  display: flex;
+  gap: 4rem;
+  padding: 0 16px;
+}
+
+.Patient-profileContainer {
+  flex: 0 0 20%;
+}
+.Patient-body {
+  flex: 0 0 50%;
+}
+.Patient-appointmentContainer {
+  display: flex;
+  align-items: center;
+}
+
+.Patient-appointment {
+  padding: 16px;
+  background: #747bff;
+  border: 1px solid #747bff;
+  margin: 4px;
+}

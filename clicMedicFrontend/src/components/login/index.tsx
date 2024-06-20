@@ -9,6 +9,17 @@ export const Login = () => {
   const initialValues: LoginType = { email: '', password: '' };
 
   const handleSubmit = (values: LoginType) => {
+    const execute = async () => {
+      fetch(`${process.env.REACT_APP_CLIC_MEDIC_API_URL}/`, {
+        method: 'POST',
+        headers: {
+          Authorization: `JWT `,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+    };
+    execute();
     console.log(values, 'values');
     navigate('/patient');
   };
