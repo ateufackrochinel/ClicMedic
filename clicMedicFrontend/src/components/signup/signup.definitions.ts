@@ -1,3 +1,5 @@
+import { string } from 'yup';
+
 export const initialValues: SignUpType = {
   type: 'patient',
   accountDetails: {
@@ -29,6 +31,13 @@ export type AccountDetails = {
   telephoneBureau?: string;
   lieuTravail?: string;
   NIMC?: string;
+};
+
+export type SpecialtiesType = {
+  id: string;
+  nom: string;
+  description: string;
+  needGreenlight: boolean;
 };
 export type SignUpType = {
   type: string;

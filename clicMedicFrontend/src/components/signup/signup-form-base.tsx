@@ -1,7 +1,7 @@
 import './signup.css';
 import { Field, Form, FormikProps } from 'formik';
 import { InputUI } from '../input';
-import { SignUpType } from './signup.definitions';
+import { SignUpType, SpecialtiesType } from './signup.definitions';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { appContext } from '../app/app';
@@ -13,7 +13,9 @@ export const SignUpFormBase = ({
 }: FormikProps<SignUpType>) => {
   const context = useContext(appContext);
 
-  const [doctorSpecialties, setDoctorSpecialties] = useState();
+  const [doctorSpecialties, setDoctorSpecialties] = useState<{
+    specialites: SpecialtiesType[];
+  }>({} as { specialites: SpecialtiesType[] });
   const [userType, setUserType] = useState('patient');
   useEffect(() => {
     const execute = async () => {
@@ -77,10 +79,10 @@ export const SignUpFormBase = ({
           <div>
             <input
               onChange={() => {
-                setUserType('patient'), setFieldValue('userType', 'patient');
+                setUserType('patient'), setFieldValue('type', 'patient');
               }}
               type="radio"
-              name="userType"
+              name="type"
               value={userType}
             />
             <label>Patient</label>
@@ -89,10 +91,10 @@ export const SignUpFormBase = ({
             <input
               onChange={() => {
                 setUserType('medecin');
-                setFieldValue('userType', 'medecin');
+                setFieldValue('type', 'medecin');
               }}
               type="radio"
-              name="userType"
+              name="type"
               value={userType}
             />
             <label>Medecin</label>
@@ -116,6 +118,13 @@ export const SignUpFormBase = ({
 
         {userType === 'medecin' && (
           <div className="orthersMedecinProps">
+            <Field as="select" name="accountDetails.specialisation">
+              {Array.isArray(doctorSpecialties.specialites) &&
+                doctorSpecialties.specialites.length > 0 &&
+                doctorSpecialties.specialites.map(({ id, nom }) => {
+                  return <option value={id}>{nom}</option>;
+                })}
+            </Field>
             <InputUI
               labelname="Spécialisation"
               placeholder="Spécialisation"
