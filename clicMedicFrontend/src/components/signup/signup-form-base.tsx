@@ -125,12 +125,12 @@ export const SignUpFormBase = ({
                   return <option value={id}>{nom}</option>;
                 })}
             </Field>
-            <InputUI
+            {/* <InputUI
               labelname="Spécialisation"
               placeholder="Spécialisation"
               type="text"
               name="accountDetails.specialisation"
-            />
+            /> */}
             <InputUI
               type="text"
               name="accountDetails.numeroEmploye"
