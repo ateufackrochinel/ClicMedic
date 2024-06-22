@@ -1,18 +1,18 @@
 import './signup.css';
 import { Formik } from 'formik';
 import { SignUpFormBase } from './signup-form-base';
-import { useContext } from 'react';
-import { appContext } from '../app/app';
-import { SignUpType, initialValues } from './signup.definitions';
-import { signup } from './signup.services';
+
+import { initialValues } from './signup.definitions';
+import { SignUpType } from '../../types';
+import { useSignup } from '../../hooks/signup.hooks';
 
 export const SignUp = () => {
-  const context = useContext(appContext);
+  const { signup } = useSignup();
 
   const handleSubmit = (values: SignUpType) => {
-    let newvalues = {} as SignUpType;
+    let newValues = {} as SignUpType;
     if (values.type === 'patient') {
-      newvalues = {
+      newValues = {
         type: values.type,
         accountDetails: {
           email: values.accountDetails.email,
@@ -25,7 +25,7 @@ export const SignUp = () => {
         },
       };
     } else if (values.type === 'medecin') {
-      newvalues = {
+      newValues = {
         type: values.type,
         accountDetails: {
           email: values.accountDetails.email,
@@ -41,12 +41,7 @@ export const SignUp = () => {
         },
       };
     }
-    const execute = async () => {
-      await signup(newvalues);
-    };
-    execute();
-    console.log(values, 'values');
-    //context?.setShowSignUpForm(false);
+    signup(newValues);
   };
 
   return (

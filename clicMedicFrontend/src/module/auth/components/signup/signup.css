@@ -16,6 +16,17 @@
   color: white;
 }
 
+.RegisterFormBase-radioContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+  padding: 4px;
+}
+.selectSpecialtyField {
+  padding: 8px;
+  border-radius: 4px;
+}
 .AppUI-signUpLabel {
   color: blue;
   cursor: pointer;

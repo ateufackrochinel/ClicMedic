@@ -1,12 +1,8 @@
+import { InputUI } from '../../../../components/input';
+import { LoginType } from '../../types';
 import './login.css';
 import { Field, Form, FormikProps } from 'formik';
-import { InputUI } from '../input';
-import { useEffect, useState } from 'react';
-export type LoginType = {
-  identifiant: string;
-  mdp: string;
-  userType: string;
-};
+
 export const LoginFormBase = ({ handleSubmit }: FormikProps<LoginType>) => {
   return (
     <div className="LoginFormBase-container">

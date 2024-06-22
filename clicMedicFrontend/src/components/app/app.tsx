@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AppLayout from '.';
-import { Login } from '../login';
-import { SignUp } from '../signup';
+import { Login } from '../../module/auth/components/login';
+import { SignUp } from '../../module/auth/components/signup';
 
 interface appContextProps {
   showSignUpForm: boolean;
@@ -17,6 +17,7 @@ export const AppUI = () => {
   const onClickShowSignUpForm = () => {
     setShowSignUpForm(true);
   };
+
   return (
     <appContext.Provider value={{ showSignUpForm, setShowSignUpForm }}>
       <AppLayout>

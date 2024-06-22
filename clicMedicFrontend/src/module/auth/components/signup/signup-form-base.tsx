@@ -1,39 +1,22 @@
 import './signup.css';
 import { Field, Form, FormikProps } from 'formik';
-import { InputUI } from '../input';
-import { SignUpType, SpecialtiesType } from './signup.definitions';
-import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { appContext } from '../app/app';
-import { getDoctorSpecialties } from './signup.services';
+
+import { useContext, useState } from 'react';
+
+import { SpecialtiesOptions } from './specialties-options';
+import { appContext } from '../../../../components/app/app';
+import { InputUI } from '../../../../components/input';
+import { SignUpType } from '../../types';
 
 export const SignUpFormBase = ({
   handleSubmit,
   setFieldValue,
+  values,
 }: FormikProps<SignUpType>) => {
   const context = useContext(appContext);
 
-  const [doctorSpecialties, setDoctorSpecialties] = useState<{
-    specialites: SpecialtiesType[];
-  }>({} as { specialites: SpecialtiesType[] });
   const [userType, setUserType] = useState('patient');
-  useEffect(() => {
-    const execute = async () => {
-      const result = await getDoctorSpecialties();
-      setDoctorSpecialties(result);
-    };
-    execute();
-  }, []);
 
-  // useEffect(() => {
-  //   if (values.type === 'patient') {
-  //     setIsPatient(true);
-  //   } else {
-  //     setIsPatient(false);
-  //   }
-  // }, [values.type]);
-
-  console.log(doctorSpecialties, 'doctorSpecialties');
   const handleGoBack = () => {
     context?.setShowSignUpForm(false);
   };
@@ -74,7 +57,7 @@ export const SignUpFormBase = ({
         <div
           role="group"
           aria-labelledby="my-radio-group"
-          className="Login-checkBoxContainer"
+          className="RegisterFormBase-radioContainer"
         >
           <div>
             <input
@@ -83,24 +66,23 @@ export const SignUpFormBase = ({
               }}
               type="radio"
               name="type"
-              value={userType}
+              value={values.type}
             />
             <label>Patient</label>
           </div>
           <div>
             <input
               onChange={() => {
-                setUserType('medecin');
                 setFieldValue('type', 'medecin');
               }}
               type="radio"
               name="type"
-              value={userType}
+              value={values.type}
             />
             <label>Medecin</label>
           </div>
         </div>
-        {userType === 'patient' && (
+        {values.type === 'patient' && (
           <div className="ontherPatientProps">
             <InputUI
               labelname="Numero d'assurance maladie"
@@ -116,21 +98,16 @@ export const SignUpFormBase = ({
           </div>
         )}
 
-        {userType === 'medecin' && (
+        {values.type === 'medecin' && (
           <div className="orthersMedecinProps">
-            <Field as="select" name="accountDetails.specialisation">
-              {Array.isArray(doctorSpecialties.specialites) &&
-                doctorSpecialties.specialites.length > 0 &&
-                doctorSpecialties.specialites.map(({ id, nom }) => {
-                  return <option value={id}>{nom}</option>;
-                })}
-            </Field>
-            {/* <InputUI
-              labelname="Spécialisation"
-              placeholder="Spécialisation"
-              type="text"
+            <Field
+              as="select"
               name="accountDetails.specialisation"
-            /> */}
+              className="selectSpecialtyField"
+            >
+              <option value={''}>{'Speicilites du medecin'}</option>
+              <SpecialtiesOptions />
+            </Field>
             <InputUI
               type="text"
               name="accountDetails.numeroEmploye"

@@ -25,6 +25,8 @@ const arrayString = [
 ];
 
 const Patient = () => {
+  const token = localStorage.getItem('accessToken');
+  console.log(token, 'token');
   return (
     <div className="Patient-container">
       {/* <h1>Patient</h1> */}
