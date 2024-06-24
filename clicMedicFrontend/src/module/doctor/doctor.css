@@ -1,0 +1,30 @@
+.Doctor-container {
+  width: 100%;
+  display: flex;
+  gap: 4rem;
+  padding: 0 16px;
+}
+
+.Doctor-sidebar {
+  flex: 0 0 20%;
+}
+.Doctor-body {
+  flex: 0 0 50%;
+}
+.Doctor-appointmentContainer {
+  display: flex;
+  align-items: center;
+}
+
+.Doctor-appointment {
+  padding: 16px;
+  background: #747bff;
+  border: 1px solid #747bff;
+  margin: 4px;
+}
+.Doctor-medecinContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: masonry;
+  gap: 4px;
+}

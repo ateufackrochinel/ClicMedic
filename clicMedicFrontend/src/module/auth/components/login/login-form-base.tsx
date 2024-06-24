@@ -20,6 +20,7 @@ export const LoginFormBase = ({ handleSubmit }: FormikProps<LoginType>) => {
           aria-labelledby="my-radio-group"
           className="Login-checkBoxContainer"
         >
+          Conecté vous en tant que
           <div>
             <Field type="radio" name="userType" value="patient" />
             <label>Patient</label>

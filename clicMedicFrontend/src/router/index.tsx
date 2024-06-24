@@ -17,7 +17,7 @@ export const AppRouter = () => {
       <Routes>
         <Route path="/" element={<AppUI />} />
         <Route path="/patient" element={<PatientPage />} />
-        <Route path="/doctor" element={<DoctorPage />} />
+        <Route path="/medecin" element={<DoctorPage />} />
 
         <Route path="*" element={<NoPage />} />
       </Routes>
