@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './patient.css';
+import { usePatientData } from './hooks/patient.hooks';
+import { MedecinCard } from './components/medecin-card';
+import { PatientProfile } from './components/patient-profile/patient-profile';
 const patients = {
   firstName: 'Guy',
   lastName: 'Tchoupo',
@@ -10,49 +13,28 @@ const appointmentDates = [
   '2024-12-06',
   '2024-10-11',
 ];
-const specialDoctor = [
-  { id: 1, name: 'Mack bolan', speciality: 'Dentist' },
-  { id: 2, name: 'Mack bolan', speciality: 'Dentist' },
-  { id: 3, name: 'Mack bolan', speciality: 'Dentist' },
-  { id: 4, name: 'Mack bolan', speciality: 'Dentist' },
-  { id: 5, name: 'Mack bolan', speciality: 'Dentist' },
-];
-
-const arrayString = [
-  'Patient wan doctor ',
-  'Doctor give the appointment',
-  'Admin Create the doctor credential',
-];
 
 const Patient = () => {
-  const token = localStorage.getItem('accessToken');
-  console.log(token, 'token');
   return (
     <div className="Patient-container">
-      {/* <h1>Patient</h1> */}
-      <div className="Patient-profileContainer">
-        Profile
-        <div>{`Firstname : ${patients.firstName}`}</div>
-        <div>{`Lastname : ${patients.lastName} `}</div>
+      <div className="Patient-sidebar">
+        <PatientProfile />
       </div>
       <div className="Patient-body">
         <h4>liste rendez vous</h4>
         <div className="Patient-appointmentContainer">
           {appointmentDates.map((item) => {
-            return <div className="Patient-appointment">{item}</div>;
+            return (
+              <div key={item} className="Patient-appointment">
+                {item}
+              </div>
+            );
           })}
         </div>
         <div className="Patient-doctorsContainer">
           <h4>liste des Specialistes</h4>
-          <div>
-            {specialDoctor.map(({ id, name, speciality }) => {
-              return (
-                <div key={id}>
-                  {' '}
-                  {`Name: ${name} speciality : ${speciality}`}
-                </div>
-              );
-            })}
+          <div className="Patient-medecinContainer">
+            <MedecinCard />;
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@
   padding: 0 16px;
 }
 
-.Patient-profileContainer {
+.Patient-sidebar {
   flex: 0 0 20%;
 }
 .Patient-body {
@@ -21,4 +21,10 @@
   background: #747bff;
   border: 1px solid #747bff;
   margin: 4px;
+}
+.Patient-medecinContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: masonry;
+  gap: 4px;
 }

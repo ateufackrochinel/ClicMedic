@@ -11,7 +11,11 @@ export const SpecialtiesOptions = () => {
       {Array.isArray(specialties) &&
         specialties.length > 0 &&
         specialties.map(({ id, nom }) => {
-          return <option value={id}>{nom}</option>;
+          return (
+            <option key={id} value={id}>
+              {nom}
+            </option>
+          );
         })}
     </>
   );

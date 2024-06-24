@@ -1,6 +1,4 @@
-import React from 'react';
-import { Login } from '../components/login';
-import Patient from '../components/patient';
+import Patient from '../module/patient';
 
 export const PatientPage = () => {
   return (
