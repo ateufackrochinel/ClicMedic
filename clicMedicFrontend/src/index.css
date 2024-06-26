@@ -81,3 +81,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.errorMsg {
+  color: red;
+  font-size: 12px;
+}

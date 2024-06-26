@@ -8,7 +8,7 @@ export const initialValues: LoginType = {
 };
 
 export const validationSchema = Yup.object().shape({
-  mdp: Yup.string().required('Required'),
-  identifiant: Yup.string().required('Required'),
+  mdp: Yup.string().required('Password is required'),
+  identifiant: Yup.string().required('Identifier is required'),
   userType: Yup.string(),
 });

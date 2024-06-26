@@ -25,7 +25,7 @@ export const InputUI = ({
         type={type}
         name={name}
       />
-      <ErrorMessage name={name} component="div" />
+      <ErrorMessage name={name} component="div" className="errorMsg" />
     </>
   );
 };

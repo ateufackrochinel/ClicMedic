@@ -15,23 +15,9 @@ const Patient = () => {
       <div className="Patient-sidebar">
         <PatientProfile />
       </div>
-      <div className="Patient-body">
-        <h2>Liste rendez vous</h2>
-        <div className="Patient-appointmentContainer">
-          {appointmentDates.map((item) => {
-            return (
-              <div key={item} className="Patient-appointment">
-                {item}
-              </div>
-            );
-          })}
-        </div>
-        <div className="Patient-doctorsContainer">
-          <h2>Liste des Specialistes</h2>
-          <div className="Patient-medecinContainer">
-            <MedecinCard />
-          </div>
-        </div>
+      <div className="Patient-doctorsContainer">
+        <h2>Liste des Specialistes</h2>
+        <MedecinCard />
       </div>
     </div>
   );

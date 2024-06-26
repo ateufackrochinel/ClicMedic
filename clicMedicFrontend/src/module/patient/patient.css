@@ -23,8 +23,3 @@
   border: 1px solid #747bff;
   margin: 4px;
 }
-.Patient-medecinContainer {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}

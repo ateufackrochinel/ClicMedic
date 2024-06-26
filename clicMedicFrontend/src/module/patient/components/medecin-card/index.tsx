@@ -28,14 +28,14 @@ export const MedecinCard = () => {
     }
   };
   return (
-    <>
+    <div className="MedecinCard-container">
       {Array.isArray(medecins) &&
         medecins.length > 0 &&
         medecins.map(
           ({ id, lieuTravail, specialite, telephoneBureau, user }) => {
             return (
               <>
-                <div key={id} className="MedecinCard-container">
+                <div key={id} className="MedecinCard-content">
                   <div>
                     <label className="MedecinCard-prefix"> {`Nom :`}</label>
                     <label className="MedecinCard-text">
@@ -84,6 +84,6 @@ export const MedecinCard = () => {
           <RendezVousPatient medecinId={medecinId} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
