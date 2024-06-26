@@ -12,6 +12,7 @@ export type RendezVousFormBaseProps = {
 };
 export const RendezVousPatientFormBase = ({
   handleSubmit,
+  resetForm,
 }: FormikProps<RendezVousFormBaseProps>) => {
   return (
     <>
@@ -23,7 +24,11 @@ export const RendezVousPatientFormBase = ({
         <InputUI placeholder="Duree" type="text" name="duree" />
         <InputUI placeholder="Notes" type="text" name="notes" />
         <div>
-          <button className="RendezVousFormBase-btn" type="submit">
+          <button
+            // onClick={() => resetForm()}
+            className="RendezVousFormBase-btn clic-btn"
+            type="submit"
+          >
             submit
           </button>
         </div>

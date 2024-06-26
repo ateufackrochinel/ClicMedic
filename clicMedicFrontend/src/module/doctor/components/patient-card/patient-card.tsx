@@ -1,16 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import { useDoctorData } from '../../hooks/doctor.hooks';
 import './patient-card.css';
 import { useEffect, useRef, useState } from 'react';
 import { RendezVousMedecin } from '../rendez-vous-medecin';
 
 export const PatientCard = () => {
-  const navigate = useNavigate();
   const [patientId, setPatientId] = useState('');
-  const { loading, error, fetchPatient, patients } = useDoctorData();
+  const { loading, fetchPatient, patients } = useDoctorData();
   const ref = useRef<HTMLDivElement | null>(null);
-
-  console.log(patients, 'patients');
   useEffect(() => {
     fetchPatient();
   }, []);
@@ -58,7 +54,10 @@ export const PatientCard = () => {
                   </label>
                 </div>
                 <div>
-                  <button onClick={() => onClikTakeAppointment(id)}>
+                  <button
+                    className="clic-btn btn-pos"
+                    onClick={() => onClikTakeAppointment(id)}
+                  >
                     Prendre Rendez-vous
                   </button>
                 </div>

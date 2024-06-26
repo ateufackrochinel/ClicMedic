@@ -16,7 +16,7 @@ const Patient = () => {
         <PatientProfile />
       </div>
       <div className="Patient-body">
-        <h4>liste rendez vous</h4>
+        <h2>Liste rendez vous</h2>
         <div className="Patient-appointmentContainer">
           {appointmentDates.map((item) => {
             return (
@@ -27,7 +27,7 @@ const Patient = () => {
           })}
         </div>
         <div className="Patient-doctorsContainer">
-          <h4>liste des Specialistes</h4>
+          <h2>Liste des Specialistes</h2>
           <div className="Patient-medecinContainer">
             <MedecinCard />
           </div>

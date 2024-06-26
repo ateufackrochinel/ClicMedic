@@ -1,26 +1,26 @@
 import { useState } from 'react';
 import { doctorsServices } from '../services';
-import { GetHoraireInputType, HoraireType } from '../types';
+import { GetHoraireInputType, GetHoraireType, HoraireType } from '../types';
 
-export const useHoraireMedecinData = ({
-  medecinId,
-  endDate,
-  startDate,
-}: GetHoraireInputType) => {
+export const useHoraireMedecinData = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | undefined>(undefined);
   const [horaires, setHoraires] = useState<HoraireType[]>([]);
-  const token = localStorage.getItem('accessToken');
-  const fetchPatient = async () => {
+  const token: string | null = localStorage.getItem('accessToken');
+  const getHoraireMedecin = async ({
+    medecinId,
+    endDate,
+    startDate,
+  }: GetHoraireInputType) => {
     try {
       setLoading(true);
       if (token !== null) {
-        const data: HoraireType[] = await doctorsServices.getHoraireDoctor({
+        const data: GetHoraireType = await doctorsServices.getHoraireDoctor({
           medecinId,
           endDate,
           startDate,
         });
-        setHoraires(data);
+        setHoraires(data.horaire);
       }
     } catch (e) {
       setError(e as Error);
@@ -32,7 +32,7 @@ export const useHoraireMedecinData = ({
   return {
     loading,
     error,
-    fetchPatient,
+    getHoraireMedecin,
     horaires,
   };
 };

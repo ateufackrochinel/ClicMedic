@@ -26,6 +26,5 @@
 .Patient-medecinContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: masonry;
-  gap: 4px;
+  gap: 8px;
 }

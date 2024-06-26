@@ -1,11 +1,13 @@
 .MedecinCard-container {
   width: fit-content;
   min-width: 280px;
+  height: 162px;
   padding: 4px;
   border: 1px solid;
   border-radius: 4px;
   background: whitesmoke;
   box-shadow: 0 2px 2px 0;
+  position: relative;
 }
 
 .MedecinCard-prefix {
@@ -34,4 +36,10 @@
   padding: 20px;
   border: 1px solid #888;
   width: 40%; /* Could be more or less, depending on screen size */
+}
+.btn-pos {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  margin-top: 80px;
 }

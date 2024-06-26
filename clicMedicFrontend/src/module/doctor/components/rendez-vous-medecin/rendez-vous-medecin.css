@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #646cff;
+  background: whitesmoke;
 }
 .InputUI-field {
   width: 90%;

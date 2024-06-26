@@ -22,7 +22,7 @@ const rendezVousPatient = async (
   token: string,
   body: RendezVousPatientType
 ): Promise<responseAuthType> => {
-  return await post<responseAuthType>('/rendez-vous/patient', {
+  return await post<responseAuthType>('/clicmedic/rendez-vous/patient', {
     token,
     body,
   });

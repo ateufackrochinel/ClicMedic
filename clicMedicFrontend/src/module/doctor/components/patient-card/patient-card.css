@@ -2,16 +2,19 @@
   width: fit-content;
   min-width: 280px;
   padding: 4px;
+  height: 142px;
   border: 1px solid;
   border-radius: 4px;
-  background: #646cff;
+  background: whitesmoke;
+  box-shadow: 0 2px 2px 0;
+  position: relative;
 }
 
 .PatientCard-prefix {
   color: black;
 }
 .PatientCard-text {
-  color: white;
+  color: #747bff;
 }
 
 .RendezVousMedecin-container {

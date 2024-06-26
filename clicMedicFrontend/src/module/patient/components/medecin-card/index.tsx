@@ -68,7 +68,7 @@ export const MedecinCard = () => {
                   </div>
                   <div>
                     <button
-                      className="clic-btn"
+                      className="clic-btn btn-pos"
                       onClick={() => onClikTakeAppointment(id)}
                     >
                       Prendre Rendez-vous

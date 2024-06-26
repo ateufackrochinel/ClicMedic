@@ -1,6 +1,8 @@
 import './doctor.css';
 import { DoctorProfile } from './components/doctor-profile/doctor-profile';
 import { PatientCard } from './components/patient-card/patient-card';
+import { useDoctorProfileData } from './hooks/doctor-profile.hooks';
+import { HoraireMedecin } from './components/horaire-medecin/horaire-medecin';
 
 const appointmentDates = [
   '2023-04-07',
@@ -10,26 +12,31 @@ const appointmentDates = [
 ];
 
 const Doctor = () => {
+  const { error, loading, doctor } = useDoctorProfileData();
+  if (loading || Object.keys(doctor).length === 0) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Something went wrong...</div>;
+  }
   return (
     <div className="Doctor-container">
       <div className="Doctor-sidebar">
-        <DoctorProfile />
+        <DoctorProfile doctor={doctor} />
       </div>
       <div className="Doctor-body">
-        <h4>liste rendez vous</h4>
+        <h2>Liste rendez vous</h2>
         <div className="Doctor-appointmentContainer">
-          {appointmentDates.map((item) => {
-            return (
-              <div key={item} className="Doctor-appointment">
-                {item}
-              </div>
-            );
-          })}
+          <HoraireMedecin
+            medecinId={doctor.id}
+            endDate="2024-06-30T00:00:00"
+            startDate="2024-06-24T00:00:00"
+          />
         </div>
         <div className="Doctor-doctorsContainer">
-          <h4>liste des patients</h4>
+          <h2>Liste des patients</h2>
           <div className="Doctor-medecinContainer">
-            <PatientCard />;
+            <PatientCard />
           </div>
         </div>
       </div>

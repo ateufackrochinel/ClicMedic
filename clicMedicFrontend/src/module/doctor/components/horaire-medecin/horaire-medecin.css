@@ -1,0 +1,19 @@
+.HoraireMedecin-container {
+  width: fit-content;
+  min-width: 280px;
+  padding: 4px;
+  height: 142px;
+  border: 1px solid;
+  border-radius: 4px;
+  background: whitesmoke;
+  box-shadow: 0 2px 2px 0;
+  display: grid;
+  grid-template-columns: repeat(auto, 1fr);
+}
+
+.HoraireMedecin-prefix {
+  color: black;
+}
+.HoraireMedecin-text {
+  color: #747bff;
+}

@@ -1,4 +1,3 @@
-import { Patient } from '../../api/types';
 import { get, post } from '../../api/utils';
 import { responseAuthType } from '../auth/types';
 import {
@@ -13,28 +12,31 @@ import {
 const fetchPatient = async (token: string): Promise<FetchPatientsType> => {
   return await get<FetchPatientsType>('/clicmedic/patients', { token });
 };
+
 const getCurrentDoctor = async (
   token: string
 ): Promise<GetCurrentDoctorType> => {
   return await get<GetCurrentDoctorType>('/clicmedic/medecin', { token });
 };
+
 const rendezVousMedecin = async (
   token: string,
   body: RendezVousMedecinType
 ): Promise<responseAuthType> => {
-  return await post<responseAuthType>('/rendez-vous/medecin', {
+  return await post<responseAuthType>('/clicmedic/rendez-vous/medecin', {
     token,
     body,
   });
 };
+
 const getHoraireDoctor = async ({
   token,
   medecinId,
   endDate,
   startDate,
-}: GetHoraireInputType): Promise<HoraireType[]> => {
-  return await get<HoraireType[]>(
-    `/medecin/horaire/${medecinId}?startDate=${startDate}&endDate=${endDate}`,
+}: GetHoraireInputType): Promise<GetHoraireType> => {
+  return await get<GetHoraireType>(
+    `/clicmedic/medecin/horaire/${medecinId}?startDate=${startDate}&endDate=${endDate}`,
     {
       token,
     }

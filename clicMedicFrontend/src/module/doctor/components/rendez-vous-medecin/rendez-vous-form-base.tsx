@@ -24,7 +24,7 @@ export const RendezVousMedecinFormBase = ({
         <InputUI placeholder="Duree" type="text" name="duree" />
         <InputUI placeholder="Notes" type="text" name="notes" />
         <div>
-          <button className="RendezVousFormBase-btn" type="submit">
+          <button className="RendezVousFormBase-btn  clic-btn" type="submit">
             submit
           </button>
         </div>
