@@ -2,14 +2,7 @@ import './doctor.css';
 import { DoctorProfile } from './components/doctor-profile/doctor-profile';
 import { PatientCard } from './components/patient-card/patient-card';
 import { useDoctorProfileData } from './hooks/doctor-profile.hooks';
-import { HoraireMedecin } from './components/horaire-medecin/horaire-medecin';
-
-const appointmentDates = [
-  '2023-04-07',
-  '2024-06-08',
-  '2024-12-06',
-  '2024-10-11',
-];
+import { SearchHoraireForm } from './components/horaire-medecin/serach-horaire-form';
 
 const Doctor = () => {
   const { error, loading, doctor } = useDoctorProfileData();
@@ -25,13 +18,9 @@ const Doctor = () => {
         <DoctorProfile doctor={doctor} />
       </div>
       <div className="Doctor-body">
-        <h2>Liste rendez vous</h2>
+        <h2>Horaire Medecin</h2>
         <div className="Doctor-appointmentContainer">
-          <HoraireMedecin
-            medecinId={doctor.id}
-            endDate="2024-06-30T00:00:00"
-            startDate="2024-06-24T00:00:00"
-          />
+          <SearchHoraireForm medecinId={doctor.id} />
         </div>
         <div className="Doctor-doctorsContainer">
           <h2>Liste des patients</h2>

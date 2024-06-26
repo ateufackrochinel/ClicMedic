@@ -15,8 +15,6 @@ export const SignUpFormBase = ({
 }: FormikProps<SignUpType>) => {
   const context = useContext(appContext);
 
-  const [userType, setUserType] = useState('patient');
-
   const handleGoBack = () => {
     context?.setShowSignUpForm(false);
   };
@@ -59,10 +57,11 @@ export const SignUpFormBase = ({
           aria-labelledby="my-radio-group"
           className="RegisterFormBase-radioContainer"
         >
+          Inscrivez-vous comme:
           <div>
             <input
               onChange={() => {
-                setUserType('patient'), setFieldValue('type', 'patient');
+                setFieldValue('type', 'patient');
               }}
               type="radio"
               name="type"

@@ -1,30 +1,8 @@
 import './horaire-medecin.css';
-import React, { useEffect } from 'react';
-import { useHoraireMedecinData } from '../../hooks/horaire-medecin.hooks';
-import { GetHoraireInputType } from '../../types';
 
-export const HoraireMedecin = ({
-  medecinId,
-  endDate,
-  startDate,
-}: GetHoraireInputType) => {
-  const {
-    getHoraireMedecin,
-    horaires,
-    loading,
-    error,
-  } = useHoraireMedecinData();
-  useEffect(() => {
-    getHoraireMedecin({
-      medecinId,
-      endDate,
-      startDate,
-    });
-  }, []);
+import { HoraireType } from '../../types';
 
-  if (loading && Object.keys(horaires).length === 0) {
-    return <div>Loading...</div>;
-  }
+export const HoraireMedecin = ({ horaires }: { horaires: HoraireType[] }) => {
   return (
     <>
       {Array.isArray(horaires) &&

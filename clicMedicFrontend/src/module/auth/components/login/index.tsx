@@ -4,22 +4,28 @@ import { LoginFormBase } from './login-form-base';
 import { LoginType } from '../../types';
 
 import { useLogin } from '../../hooks/login.hooks';
+import { initialValues, validationSchema } from './login.definitions';
 
 export const Login = () => {
-  const initialValues: LoginType = {
-    userType: '',
-    mdp: '',
-    identifiant: '',
-  };
   const { error, loading, login } = useLogin();
 
   const handleSubmit = (values: LoginType) => {
     login(values);
   };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Something wrong</div>;
+  }
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+      >
         {(props) => {
           return <LoginFormBase {...props} />;
         }}

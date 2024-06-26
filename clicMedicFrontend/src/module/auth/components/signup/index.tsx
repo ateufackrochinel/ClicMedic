@@ -2,7 +2,7 @@ import './signup.css';
 import { Formik } from 'formik';
 import { SignUpFormBase } from './signup-form-base';
 
-import { initialValues } from './signup.definitions';
+import { initialValues, validationSchema } from './signup.definitions';
 import { SignUpType } from '../../types';
 import { useSignup } from '../../hooks/signup.hooks';
 
@@ -46,7 +46,11 @@ export const SignUp = () => {
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+      >
         {(props) => {
           return <SignUpFormBase {...props} />;
         }}

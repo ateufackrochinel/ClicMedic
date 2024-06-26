@@ -1,11 +1,10 @@
 import { get, post } from '../../api/utils';
-import { responseAuthType } from '../auth/types';
+import { SpecialtiesType, responseAuthType } from '../auth/types';
 import {
   FetchPatientsType,
   GetCurrentDoctorType,
   GetHoraireInputType,
   GetHoraireType,
-  HoraireType,
   RendezVousMedecinType,
 } from './types';
 
@@ -43,9 +42,19 @@ const getHoraireDoctor = async ({
   );
 };
 
+const getSpecialties = async (): Promise<{
+  specialites: SpecialtiesType[];
+}> => {
+  return await get<{ specialites: SpecialtiesType[] }>(
+    '/clicmedic/specialites',
+    {}
+  );
+};
+
 export const doctorsServices = {
   fetchPatient,
   getCurrentDoctor,
   getHoraireDoctor,
   rendezVousMedecin,
+  getSpecialties,
 };

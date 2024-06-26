@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { SpecialtiesType } from '../../auth/types';
-import { apiClient } from '../../../api';
+import { doctorsServices } from '../services';
 
 export const useSpecialtiesData = () => {
   const [specialtiesLoading, setSpecialtiesLoading] = useState<boolean>(false);
@@ -10,7 +10,7 @@ export const useSpecialtiesData = () => {
       setSpecialtiesLoading(true);
       const result: {
         specialites: SpecialtiesType[];
-      } = await apiClient.getSpecialties();
+      } = await doctorsServices.getSpecialties();
       setSpecialties(result.specialites);
       setSpecialtiesLoading(false);
     };
