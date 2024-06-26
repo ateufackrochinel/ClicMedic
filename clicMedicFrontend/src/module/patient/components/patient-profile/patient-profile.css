@@ -1,2 +1,9 @@
 .PatientProfile-profileContainer {
 }
+
+.PatientProfile-prefix {
+  color: black;
+}
+.PatientProfile-text {
+  color: #747bff;
+}

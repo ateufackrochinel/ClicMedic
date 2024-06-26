@@ -18,3 +18,12 @@ export type HoraireType = {
   lieu: string;
   patient: Patient;
 };
+
+export type RendezVousMedecinType = {
+  titre: string;
+  lieu: string;
+  patientId: string;
+  debut: string;
+  duree: number;
+  notes: string;
+};

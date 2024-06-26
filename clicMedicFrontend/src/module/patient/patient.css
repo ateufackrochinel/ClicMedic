@@ -2,11 +2,12 @@
   width: 100%;
   display: flex;
   gap: 4rem;
-  padding: 0 16px;
 }
 
 .Patient-sidebar {
   flex: 0 0 20%;
+  padding: 16px;
+  height: 100vh;
 }
 .Patient-body {
   flex: 0 0 50%;

@@ -1,9 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import { useDoctorData } from '../../hooks/doctor.hooks';
 import './patient-card.css';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { RendezVousMedecin } from '../rendez-vous-medecin';
 
 export const PatientCard = () => {
+  const navigate = useNavigate();
+  const [patientId, setPatientId] = useState('');
   const { loading, error, fetchPatient, patients } = useDoctorData();
+  const ref = useRef<HTMLDivElement | null>(null);
 
   console.log(patients, 'patients');
   useEffect(() => {
@@ -13,7 +18,17 @@ export const PatientCard = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  const onClikTakeAppointment = (id: string) => {};
+  const onClikTakeAppointment = (id: string) => {
+    if (ref.current) {
+      ref.current.style.display = 'block';
+    }
+    setPatientId(id);
+  };
+  window.onclick = function (event) {
+    if (ref.current !== null && event.target === ref.current) {
+      ref.current.style.display = 'none';
+    }
+  };
   return (
     <>
       {Array.isArray(patients) &&
@@ -42,7 +57,6 @@ export const PatientCard = () => {
                     {`${numeroAssuranceMaladie}`}
                   </label>
                 </div>
-
                 <div>
                   <button onClick={() => onClikTakeAppointment(id)}>
                     Prendre Rendez-vous
@@ -52,6 +66,11 @@ export const PatientCard = () => {
             </>
           );
         })}
+      <div className="RendezVousMedecin-container" ref={ref}>
+        <div className="RendezVousMedecin-content">
+          <RendezVousMedecin patientId={patientId} />
+        </div>
+      </div>
     </>
   );
 };

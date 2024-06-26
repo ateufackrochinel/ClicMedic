@@ -1,11 +1,13 @@
 import { Patient } from '../../api/types';
-import { get } from '../../api/utils';
+import { get, post } from '../../api/utils';
+import { responseAuthType } from '../auth/types';
 import {
   FetchPatientsType,
   GetCurrentDoctorType,
   GetHoraireInputType,
   GetHoraireType,
   HoraireType,
+  RendezVousMedecinType,
 } from './types';
 
 const fetchPatient = async (token: string): Promise<FetchPatientsType> => {
@@ -15,6 +17,15 @@ const getCurrentDoctor = async (
   token: string
 ): Promise<GetCurrentDoctorType> => {
   return await get<GetCurrentDoctorType>('/clicmedic/medecin', { token });
+};
+const rendezVousMedecin = async (
+  token: string,
+  body: RendezVousMedecinType
+): Promise<responseAuthType> => {
+  return await post<responseAuthType>('/rendez-vous/medecin', {
+    token,
+    body,
+  });
 };
 const getHoraireDoctor = async ({
   token,
@@ -34,4 +45,5 @@ export const doctorsServices = {
   fetchPatient,
   getCurrentDoctor,
   getHoraireDoctor,
+  rendezVousMedecin,
 };

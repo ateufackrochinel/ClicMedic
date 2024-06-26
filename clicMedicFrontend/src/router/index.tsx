@@ -3,6 +3,7 @@ import { DoctorPage } from '../pages/doctor-page';
 import { PatientPage } from '../pages/patient-page';
 import { NoPage } from '../pages/no-page';
 import { AppUI } from '../components/app/app';
+import { RendezVousMedecin } from '../module/doctor/components/rendez-vous-medecin';
 
 export const AppRouter = () => {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ export const AppRouter = () => {
         <Route path="/" element={<AppUI />} />
         <Route path="/patient" element={<PatientPage />} />
         <Route path="/medecin" element={<DoctorPage />} />
+        {/* <Route
+          path="/rendez-vous/patient/:patientId"
+          element={<RendezVousMedecin />}
+        /> */}
 
         <Route path="*" element={<NoPage />} />
       </Routes>

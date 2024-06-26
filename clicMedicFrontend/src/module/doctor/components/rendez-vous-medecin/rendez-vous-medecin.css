@@ -1,0 +1,10 @@
+.RendezVousFormBase-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #646cff;
+}
+.InputUI-field {
+  width: 90%;
+}

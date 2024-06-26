@@ -1,12 +1,7 @@
-import React, { useEffect } from 'react';
 import './patient.css';
-import { usePatientData } from './hooks/patient.hooks';
 import { MedecinCard } from './components/medecin-card';
 import { PatientProfile } from './components/patient-profile/patient-profile';
-const patients = {
-  firstName: 'Guy',
-  lastName: 'Tchoupo',
-};
+
 const appointmentDates = [
   '2023-04-07',
   '2024-06-08',
@@ -34,7 +29,7 @@ const Patient = () => {
         <div className="Patient-doctorsContainer">
           <h4>liste des Specialistes</h4>
           <div className="Patient-medecinContainer">
-            <MedecinCard />;
+            <MedecinCard />
           </div>
         </div>
       </div>
