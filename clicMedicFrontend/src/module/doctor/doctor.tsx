@@ -1,8 +1,8 @@
 import './doctor.css';
-import { DoctorProfile } from './components/doctor-profile/doctor-profile';
-import { PatientCard } from './components/patient-card/patient-card';
-import { useDoctorProfileData } from './hooks/doctor-profile.hooks';
-import { SearchHoraireForm } from './components/horaire-medecin/serach-horaire-form';
+import { DoctorProfile } from '@clicMedic/module/doctor/components/doctor-profile/doctor-profile';
+import { PatientCard } from '@clicMedic/module/doctor/components/patient-card/patient-card';
+import { useDoctorProfileData } from '@clicMedic/module/doctor/hooks/doctor-profile.hooks';
+import { SearchHoraireForm } from '@clicMedic/module/doctor/components/horaire-medecin/serach-horaire-form';
 
 const Doctor = () => {
   const { error, loading, doctor } = useDoctorProfileData();

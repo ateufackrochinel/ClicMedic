@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Patient } from '../../../api/types';
-import { doctorsServices } from '../services';
+import { doctorsServices } from '../services/services';
 import { FetchPatientsType } from '../types';
 
 export const useDoctorData = () => {

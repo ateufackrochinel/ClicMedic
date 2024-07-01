@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { doctorsServices } from '../services';
+import { doctorsServices } from '../services/services';
 import { RendezVousMedecinType } from '../types';
 
 export const useRendezVousMedecinData = () => {

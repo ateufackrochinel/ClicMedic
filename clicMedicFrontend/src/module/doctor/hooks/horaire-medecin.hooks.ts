@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { doctorsServices } from '../services';
+import { doctorsServices } from '../services/services';
 import { GetHoraireInputType, GetHoraireType, HoraireType } from '../types';
 
 export const useHoraireMedecinData = () => {

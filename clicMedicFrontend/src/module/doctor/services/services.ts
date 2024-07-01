@@ -1,12 +1,15 @@
-import { get, post } from '../../api/utils';
-import { SpecialtiesType, responseAuthType } from '../auth/types';
+import { get, post } from '@clicMedic/api/utils';
+import {
+  SpecialtiesType,
+  responseAuthType,
+} from '@clicMedic/module/auth/types';
 import {
   FetchPatientsType,
   GetCurrentDoctorType,
   GetHoraireInputType,
   GetHoraireType,
   RendezVousMedecinType,
-} from './types';
+} from '../types';
 
 const fetchPatient = async (token: string): Promise<FetchPatientsType> => {
   return await get<FetchPatientsType>('/clicmedic/patients', { token });

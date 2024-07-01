@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { SpecialtiesType } from '../../auth/types';
-import { doctorsServices } from '../services';
+import { doctorsServices } from '../services/services';
 
 export const useSpecialtiesData = () => {
   const [specialtiesLoading, setSpecialtiesLoading] = useState<boolean>(false);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { doctorsServices } from '../services';
+import { doctorsServices } from '../services/services';
 import { GetCurrentDoctorType } from '../types';
 import { Medecin } from '../../../api/types';
 
