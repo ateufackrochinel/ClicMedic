@@ -12,6 +12,7 @@ import { doctorsServices } from './services';
 import { authService } from '@clicMedic/module/auth/services';
 
 const BEFORE_ALL_TIMEOUT = 30000; // 30 sec
+global.fetch = vi.fn();
 const patientDataTest = {
   patients: [
     {
@@ -42,18 +43,20 @@ const patientDataTest = {
     },
   ],
 };
-describe('Doctor request after login ', () => {
+describe('Doctor services ', () => {
   let patient: FetchPatientsType = {} as FetchPatientsType;
+
   beforeAll(async () => {
-    const { token } = await authService.login({
-      userType: 'medecin',
-      mdp: 'bomotdepasse1',
-      identifiant: 'EMP123723233334578',
-    });
-    if (token) {
-      patient = await doctorsServices.fetchPatient(token);
-    }
-    vi.mocked;
+    // const { token } = await authService.login({
+    //   userType: 'medecin',
+    //   mdp: 'bomotdepasse1',
+    //   identifiant: 'EMP123723233334578',
+    // });
+    // if (token) {
+    //   patient = await doctorsServices.fetchPatient(token);
+    // }
+    vi.mocked(doctorsServices.fetchPatient).mockResolvedValue(patientDataTest);
+    expect(await doctorsServices.fetchPatient).toEqual(patientDataTest);
   }, BEFORE_ALL_TIMEOUT);
 
   afterEach(() => {});

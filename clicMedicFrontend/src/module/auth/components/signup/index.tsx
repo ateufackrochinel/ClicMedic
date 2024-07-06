@@ -2,12 +2,19 @@ import './signup.css';
 import { Formik } from 'formik';
 import { SignUpFormBase } from './signup-form-base';
 
-import { initialValues, validationSchema } from './signup.definitions';
+import {
+  initialValues,
+  validationSchemaMedecin,
+  validationSchemaPatient,
+} from './signup.definitions';
 import { SignUpType } from '../../types';
 import { useSignup } from '../../hooks/signup.hooks';
+import { useContext } from 'react';
+import { appContext } from '@clicMedic/components/app/app';
 
 export const SignUp = () => {
   const { signup } = useSignup();
+  const { patient } = useContext(appContext);
 
   const handleSubmit = (values: SignUpType) => {
     let newValues = {} as SignUpType;
@@ -47,7 +54,9 @@ export const SignUp = () => {
   return (
     <>
       <Formik
-        validationSchema={validationSchema}
+        validationSchema={
+          patient ? validationSchemaPatient : validationSchemaMedecin
+        }
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >

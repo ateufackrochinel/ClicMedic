@@ -13,10 +13,10 @@ export const SignUpFormBase = ({
   setFieldValue,
   values,
 }: FormikProps<SignUpType>) => {
-  const context = useContext(appContext);
+  const { toggle, togglePatient } = useContext(appContext);
 
   const handleGoBack = () => {
-    context?.setShowSignUpForm(false);
+    toggle(false);
   };
   return (
     <div className="RegisterFormBase-container">
@@ -62,6 +62,7 @@ export const SignUpFormBase = ({
             <input
               onChange={() => {
                 setFieldValue('type', 'patient');
+                togglePatient('patient');
               }}
               type="radio"
               name="type"
@@ -73,6 +74,7 @@ export const SignUpFormBase = ({
             <input
               onChange={() => {
                 setFieldValue('type', 'medecin');
+                togglePatient('medecin');
               }}
               type="radio"
               name="type"

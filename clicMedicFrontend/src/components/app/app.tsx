@@ -3,38 +3,33 @@ import AppLayout from '.';
 import { Login } from '../../module/auth/components/login';
 import { SignUp } from '../../module/auth/components/signup';
 
-interface appContextProps {
+export interface appContextProps {
   showSignUpForm: boolean;
-  setShowSignUpForm: React.Dispatch<React.SetStateAction<boolean>>;
+  toggle: (val: boolean) => void;
+  patient: string;
+  togglePatient: (val: string) => void;
 }
 
-export const appContext = React.createContext<appContextProps | undefined>(
-  undefined
-);
+export const appContext = React.createContext<appContextProps>({
+  showSignUpForm: false,
+  toggle: (val: boolean) => {},
+  patient: '',
+  togglePatient: (val: string) => {},
+});
 
 export const AppUI = () => {
   const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const onClickShowSignUpForm = () => {
-    setShowSignUpForm(true);
-  };
+  const [patient, setPatient] = useState('');
+  const toggle = (val: boolean) => setShowSignUpForm(val);
+  const togglePatient = (val: string) => setPatient(val);
+  const value = { toggle, showSignUpForm, patient, togglePatient };
 
   return (
-    <appContext.Provider value={{ showSignUpForm, setShowSignUpForm }}>
+    <appContext.Provider value={value}>
       <AppLayout>
         <div>
           {!showSignUpForm && <Login />}
           {showSignUpForm && <SignUp />}
-          {!showSignUpForm && (
-            <div>
-              No account :{' '}
-              <label
-                className="AppUI-signUpLabel"
-                onClick={onClickShowSignUpForm}
-              >
-                Sign up
-              </label>
-            </div>
-          )}
         </div>
       </AppLayout>
     </appContext.Provider>
