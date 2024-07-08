@@ -1,10 +1,10 @@
-import { appContext } from './../../../components/app/app';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { authService } from '../services';
 import { SignUpType, responseAuthType } from '../types';
+import { useAppContext } from '@clicMedic/components/app/contextController';
 
 export const useSignup = () => {
-  const { toggle } = useContext(appContext);
+  const { toggle } = useAppContext();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | undefined>(undefined);
 

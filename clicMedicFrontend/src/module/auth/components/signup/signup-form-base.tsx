@@ -1,23 +1,24 @@
 import './signup.css';
 import { Field, Form, FormikProps } from 'formik';
-
-import { useContext, useState } from 'react';
-
 import { SpecialtiesOptions } from './specialties-options';
-import { appContext } from '../../../../components/app/app';
 import { InputUI } from '../../../../components/input';
 import { SignUpType } from '../../types';
+import { useAppContext } from '@clicMedic/components/app/contextController';
+import { useEffect } from 'react';
 
 export const SignUpFormBase = ({
   handleSubmit,
   setFieldValue,
   values,
 }: FormikProps<SignUpType>) => {
-  const { toggle, togglePatient } = useContext(appContext);
+  const { toggle, togglePatient } = useAppContext();
 
   const handleGoBack = () => {
     toggle(false);
   };
+  useEffect(() => {
+    togglePatient(values.type);
+  }, [values.type]);
   return (
     <div className="RegisterFormBase-container">
       <h2>Inscription</h2>
@@ -62,7 +63,6 @@ export const SignUpFormBase = ({
             <input
               onChange={() => {
                 setFieldValue('type', 'patient');
-                togglePatient('patient');
               }}
               type="radio"
               name="type"
@@ -74,7 +74,6 @@ export const SignUpFormBase = ({
             <input
               onChange={() => {
                 setFieldValue('type', 'medecin');
-                togglePatient('medecin');
               }}
               type="radio"
               name="type"

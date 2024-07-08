@@ -1,16 +1,14 @@
 import './login.css';
 import { Formik } from 'formik';
+import { useAppContext } from '@clicMedic/components/app/contextController';
 import { LoginFormBase } from './login-form-base';
 import { LoginType } from '../../types';
-
 import { useLogin } from '../../hooks/login.hooks';
 import { initialValues, validationSchema } from './login.definitions';
-import { appContext } from '@clicMedic/components/app/app';
-import { useContext } from 'react';
 
 export const Login = () => {
   const { error, loading, login } = useLogin();
-  const { toggle, showSignUpForm } = useContext(appContext);
+  const { toggle, showSignUpForm } = useAppContext();
 
   const handleSubmit = (values: LoginType) => {
     login(values);

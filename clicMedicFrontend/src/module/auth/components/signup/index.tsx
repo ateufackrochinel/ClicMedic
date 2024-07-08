@@ -9,45 +9,15 @@ import {
 } from './signup.definitions';
 import { SignUpType } from '../../types';
 import { useSignup } from '../../hooks/signup.hooks';
-import { useContext } from 'react';
-import { appContext } from '@clicMedic/components/app/app';
+import { useAppContext } from '@clicMedic/components/app/contextController';
+import { useUserStrategy } from '../../hooks/useUserStrategy';
 
 export const SignUp = () => {
   const { signup } = useSignup();
-  const { patient } = useContext(appContext);
+  const { patient } = useAppContext();
 
   const handleSubmit = (values: SignUpType) => {
-    let newValues = {} as SignUpType;
-    if (values.type === 'patient') {
-      newValues = {
-        type: values.type,
-        accountDetails: {
-          email: values.accountDetails.email,
-          nom: values.accountDetails.nom,
-          prenom: values.accountDetails.prenom,
-          telephone: values.accountDetails.telephone,
-          dateNaissance: values.accountDetails.dateNaissance,
-          numeroAssuranceMaladie: values.accountDetails.dateNaissance,
-          mdp: values.accountDetails.mdp,
-        },
-      };
-    } else if (values.type === 'medecin') {
-      newValues = {
-        type: values.type,
-        accountDetails: {
-          email: values.accountDetails.email,
-          nom: values.accountDetails.nom,
-          prenom: values.accountDetails.prenom,
-          telephone: values.accountDetails.telephone,
-          mdp: values.accountDetails.mdp,
-          lieuTravail: values.accountDetails.lieuTravail,
-          NIMC: values.accountDetails.NIMC,
-          numeroEmploye: values.accountDetails.numeroEmploye,
-          telephoneBureau: values.accountDetails.telephoneBureau,
-          specialisation: values.accountDetails.specialisation,
-        },
-      };
-    }
+    const { newValues } = useUserStrategy(values);
     signup(newValues);
   };
 
@@ -55,7 +25,9 @@ export const SignUp = () => {
     <>
       <Formik
         validationSchema={
-          patient ? validationSchemaPatient : validationSchemaMedecin
+          patient === 'patient'
+            ? validationSchemaPatient
+            : validationSchemaMedecin
         }
         initialValues={initialValues}
         onSubmit={handleSubmit}
