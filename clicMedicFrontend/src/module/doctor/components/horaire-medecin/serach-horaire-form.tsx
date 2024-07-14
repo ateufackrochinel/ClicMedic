@@ -9,12 +9,7 @@ export const SearchHoraireForm = ({ medecinId }: { medecinId: string }) => {
     endDate: '',
     medecinId: '',
   };
-  const {
-    getHoraireMedecin,
-    horaires,
-    loading,
-    error,
-  } = useHoraireMedecinData();
+  const { getHoraireMedecin, horaires, loading } = useHoraireMedecinData();
 
   const handleSubmit = (values: DateFormBaseProps) => {
     values.medecinId = medecinId;
