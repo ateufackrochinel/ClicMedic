@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -22,6 +23,11 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous, UUID> {
     );
 
     List<Rendezvous> findByPatientId(UUID patientId);
+
+   // List<Rendezvous> findByRendezvousId(UUID rendezvousId);
+
+    @Override
+    Optional<Rendezvous> findById(UUID uuid);
 
     @Query("SELECT r FROM Rendezvous r WHERE r.medecin.id = :medecinId AND " +
             "((:startDate BETWEEN r.tempsDebut AND FUNCTION('ADDTIME', r.tempsDebut, FUNCTION('SEC_TO_TIME', r.duree * 60))) OR " +

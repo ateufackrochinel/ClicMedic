@@ -1,6 +1,7 @@
 package com.mgl802.clicmedic.Controlleur;
 
 import com.mgl802.clicmedic.Controlleur.jsontypes.JsonErrorReturn;
+import com.mgl802.clicmedic.Controlleur.jsontypes.JsonRendezVous.BougerRendezvous;
 import com.mgl802.clicmedic.Controlleur.jsontypes.JsonRendezVous.MedecinCreateRendezVous;
 import com.mgl802.clicmedic.Controlleur.jsontypes.JsonRendezVous.PatientCreateRendezVous;
 import com.mgl802.clicmedic.Controlleur.jsontypes.JsonReturn;
@@ -161,9 +162,39 @@ public class RendezVousController {
 
     }
 
-    @PatchMapping("/rendez-vous")
-    public String bougerRendezVous() {
-        return "Hello, World!";
+    @PatchMapping("/bouger-rendezvous")
+    public ResponseEntity<JsonReturn> bougerRendezVous(
+
+            @RequestHeader(value = "Authorization", required = true) String authorizationHeader,
+            @RequestBody BougerRendezvous bougerRendezvous
+                                    ) {
+
+        if (authorizationHeader ==null){
+            String errorMessage = "Authentification requise";
+            System.out.println(errorMessage);
+            JsonErrorReturn errorMess = new JsonErrorReturn ( errorMessage );
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorMess);
+        }
+        //  return "Hello, World!";
+
+        Optional<Session> potSession = sessionService.findByToken(authorizationHeader);
+
+        if (potSession.isEmpty()) {
+            String errorMessage = "Token Invalide";
+            System.out.println(errorMessage);
+            JsonErrorReturn errorMess = new JsonErrorReturn ( errorMessage );
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorMess);
+        }
+
+      rendezvousService.updateRendezvousTime(bougerRendezvous.id(),bougerRendezvous.newDate());
+
+       // optRendezvous.get().getTempsDebut()= bougerRendezvous.newDate();
+
+        String successMessage= " Date du rendez-vous modifie";
+        System.out.println(successMessage);
+        JsonSuccess succMess= new JsonSuccess(successMessage);
+
+        return  ResponseEntity.ok(succMess);
     }
 
     @PatchMapping("/rendez-vous/rapport")
@@ -182,8 +213,39 @@ public class RendezVousController {
     }
 
     @GetMapping("/rendez-vous")
-    public String rechercheRendezVous() {
-        return "Hello, World!";
+    public ResponseEntity<JsonReturn> rechercheRendezVous(
+            @RequestHeader(value = "Authorization", required = true) String authorizationHeader,
+            @RequestParam(name="startDate", required = true) LocalDateTime startDate,
+            @RequestParam(name="endDate", required = true) LocalDateTime endDate
+          //  @RequestParam(name="medecinId", required = true) String medecinId
+    ) {
+
+        if (authorizationHeader ==null){
+            String errorMessage = "Authentification requise";
+            System.out.println(errorMessage);
+            JsonErrorReturn errorMess = new JsonErrorReturn ( errorMessage );
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorMess);
+        }
+      //  return "Hello, World!";
+
+        Optional<Session> potSession = sessionService.findByToken(authorizationHeader);
+
+        if (potSession.isEmpty()) {
+            String errorMessage = "Token Invalide";
+            System.out.println(errorMessage);
+            JsonErrorReturn errorMess = new JsonErrorReturn ( errorMessage );
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorMess);
+        }
+
+
+
+        Optional<Medecin> optMedecin = medecinService.trouverMedecinParSessionToken(authorizationHeader);
+         UUID medecinId= optMedecin.get().getId();
+
+List<Rendezvous> resultats= rendezvousService.getRendezvousByMedecinIdAndDateRange(medecinId,startDate,endDate);
+
+RendezvousSearchResponse response= new RendezvousSearchResponse(resultats);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/patients")
@@ -309,5 +371,38 @@ public class RendezVousController {
             return horaire;
         }
     }
+
+    private class RendezvousSearchResponse extends  JsonReturn{
+
+        private final List<Rendezvous> rendezvous;
+
+        public RendezvousSearchResponse(List<Rendezvous> rendezvous) {
+            this.rendezvous= rendezvous;
+        }
+
+        public List<Rendezvous> getRendezvous(){ return rendezvous;}
+    }
+
+
+
+//    public ResponseEntity<JsonReturn> verifyAuthorization( String token){
+//
+//        if (token == null) {
+//            String errorMessage = "Authentification requise";
+//            System.out.println(errorMessage);
+//            JsonErrorReturn errorMess = new JsonErrorReturn ( errorMessage );
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorMess);
+//        }
+//
+//        Optional<Session> potSession = sessionService.findByToken(token);
+//
+//        if (potSession.isEmpty()) {
+//            String errorMessage = "Token Invalide";
+//            System.out.println(errorMessage);
+//            JsonErrorReturn errorMess = new JsonErrorReturn ( errorMessage );
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorMess);
+//        }
+//
+//        return null;
 
 }

@@ -107,4 +107,22 @@ public class RendezvousService {
         return rendezvousRepository.findByMedecinIdAndDateRange(medecinId, startDate, endDate);
     }
 
+    public Optional<Rendezvous> getRendezvousByRendezvousId(UUID rendezvousId){
+        return rendezvousRepository.findById(rendezvousId);
+    }
+
+    public void updateRendezvousTime(UUID rendezvousId, LocalDateTime newDate){
+
+        Optional<Rendezvous> rendezvous = rendezvousRepository.findById(rendezvousId);
+
+        if ( rendezvous.isEmpty()) {
+
+            throw new RuntimeException(" le rendezvous n'existe pas dans le systeme");
+                 }
+        rendezvous.get().setTempsDebut(newDate);
+
+        rendezvousRepository.save(rendezvous.get());
+
+
+    }
 }
