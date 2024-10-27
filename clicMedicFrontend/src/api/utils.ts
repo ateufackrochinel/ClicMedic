@@ -1,4 +1,4 @@
-const baseurl = 'http://localhost:8080';
+const baseurl = import.meta.env.VITE_BACKEND_BASE_URL;
 
 async function get<T>(url: string, { token }: { token?: string }): Promise<T> {
   const response = await fetch(`${baseurl}${url}`, {

@@ -57,6 +57,65 @@ export class ConcreteUser implements STrategy {
     return user;
   }
 }
+export class ConcretePatient implements STrategy {
+  public getUser(values: SignUpType) {
+    const {
+      email,
+      mdp,
+      nom,
+      prenom,
+      telephone,
+      dateNaissance,
+      numeroAssuranceMaladie,
+    } = values.accountDetails;
+    const patient: SignUpType = {
+      type: values.type,
+      accountDetails: {
+        email,
+        nom,
+        prenom,
+        telephone,
+        mdp,
+        dateNaissance,
+        numeroAssuranceMaladie,
+      },
+    };
+
+    return patient;
+  }
+}
+export class ConcreteMedecin implements STrategy {
+  public getUser(values: SignUpType) {
+    const {
+      email,
+      mdp,
+      nom,
+      prenom,
+      telephone,
+      NIMC,
+      lieuTravail,
+      numeroEmploye,
+      specialisation,
+      telephoneBureau,
+    } = values.accountDetails;
+    const medecin: SignUpType = {
+      type: values.type,
+      accountDetails: {
+        email,
+        nom,
+        prenom,
+        telephone,
+        mdp,
+        lieuTravail,
+        numeroEmploye,
+        specialisation,
+        telephoneBureau,
+        NIMC,
+      },
+    };
+    return medecin;
+  }
+}
 
 export class UserStrategy {
   private strategy: STrategy = {} as STrategy;
