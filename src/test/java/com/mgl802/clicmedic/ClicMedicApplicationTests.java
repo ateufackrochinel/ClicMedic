@@ -9,5 +9,4 @@ class ClicMedicApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
