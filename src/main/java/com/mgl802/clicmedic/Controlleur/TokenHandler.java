@@ -1,4 +1,4 @@
-package com.mgl802.clicmedic.Controlleur;
+ckerpackage com.mgl802.clicmedic.Controlleur;
 
 import com.mgl802.clicmedic.Modele.Session;
 import com.mgl802.clicmedic.Services.MedecinService;
