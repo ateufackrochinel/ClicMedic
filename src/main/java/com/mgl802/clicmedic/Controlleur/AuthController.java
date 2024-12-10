@@ -107,14 +107,14 @@ public class AuthController {
 //        return ResponseEntity.ok().build();
 //    }
 //
-//    public static class LoginRequest {
-//        private String identifiant;
-//        private String mdp;
-//        private String userType;
-//        public String getIdentifiant() { return identifiant; }
-//        public String getMdp() { return mdp; }
-//        public String getUserType() { return userType; }
-//    }
+    public static class LoginRequest {
+        private String identifiant;
+        private String mdp;
+        private String userType;
+        public String getIdentifiant() { return identifiant; }
+        public String getMdp() { return mdp; }
+        public String getUserType() { return userType; }
+    }
 
     private class TokenResponse extends JsonReturn {
         private String token;
