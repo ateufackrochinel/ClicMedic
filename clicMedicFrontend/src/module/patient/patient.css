@@ -1,25 +1,32 @@
+/* ========== Patient Dashboard ========== */
 .Patient-container {
   width: 100%;
+  min-height: 100vh;
   display: flex;
-  gap: 4rem;
+  background-color: var(--color-bg);
 }
 
+/* Sidebar */
 .Patient-sidebar {
-  flex: 0 0 20%;
-  padding: 16px;
-  height: 100vh;
-}
-.Patient-body {
-  flex: 0 0 50%;
-}
-.Patient-appointmentContainer {
-  display: flex;
-  align-items: center;
+  flex: 0 0 260px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  padding: var(--space-6);
+  min-height: 100vh;
+  box-shadow: var(--shadow-sm);
 }
 
-.Patient-appointment {
-  padding: 16px;
-  background: #747bff;
-  border: 1px solid #747bff;
-  margin: 4px;
+/* Doctors container */
+.Patient-doctorsContainer {
+  flex: 1;
+  padding: var(--space-6) var(--space-8);
+  overflow-y: auto;
+}
+
+.Patient-doctorsContainer > h2 {
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-primary-light);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-6);
 }

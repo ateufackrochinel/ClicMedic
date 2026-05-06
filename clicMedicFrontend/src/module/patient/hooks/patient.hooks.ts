@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Medecin } from '../../../api/types';
+import { Medecin } from '@clicMedic/api/types';
 import { patientServices } from '../services';
 import { FetchMedecinsType } from '../types';
+import { isValidToken } from '@clicMedic/api/utils';
 
 export const usePatientData = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -11,7 +12,7 @@ export const usePatientData = () => {
   const fetchMedecin = async () => {
     try {
       setLoading(true);
-      if (token !== null) {
+      if (isValidToken(token)) {
         const data: FetchMedecinsType = await patientServices.fetchMedecin(
           token
         );

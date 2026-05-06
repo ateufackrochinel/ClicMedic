@@ -11,6 +11,16 @@ export const PatientCard = () => {
     fetchPatient();
   }, []);
 
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (ref.current !== null && event.target === ref.current) {
+        ref.current.style.display = 'none';
+      }
+    };
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, []);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -20,19 +30,13 @@ export const PatientCard = () => {
     }
     setPatientId(id);
   };
-  window.onclick = function (event) {
-    if (ref.current !== null && event.target === ref.current) {
-      ref.current.style.display = 'none';
-    }
-  };
   return (
     <>
       {Array.isArray(patients) &&
         patients.length > 0 &&
         patients.map(({ id, user, dateNaissance, numeroAssuranceMaladie }) => {
           return (
-            <>
-              <div key={id} className="PatientCard-container">
+            <div key={id} className="PatientCard-container">
                 <div>
                   <label className="PatientCard-prefix"> {`Nom :`}</label>
                   <label className="PatientCard-text">
@@ -61,8 +65,7 @@ export const PatientCard = () => {
                     Prendre Rendez-vous
                   </button>
                 </div>
-              </div>
-            </>
+            </div>
           );
         })}
       <div className="RendezVousMedecin-container" ref={ref}>

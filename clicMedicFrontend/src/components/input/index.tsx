@@ -1,5 +1,4 @@
 import './input.css';
-import React from 'react';
 import { ErrorMessage, Field, FieldAttributes } from 'formik';
 interface Props {
   name: string;
@@ -12,20 +11,24 @@ export const InputUI = ({
   type,
   placeholder,
   labelname,
-
   ...rest
 }: FieldAttributes<Props>) => {
   return (
-    <>
-      {labelname !== undefined && <label>{labelname}</label>}
+    <div className="InputUI-wrapper">
+      {labelname !== undefined && (
+        <label className="InputUI-label" htmlFor={name}>
+          {labelname}
+        </label>
+      )}
       <Field
         {...rest}
+        id={name}
         className="InputUI-field"
         placeholder={placeholder}
         type={type}
         name={name}
       />
       <ErrorMessage name={name} component="div" className="errorMsg" />
-    </>
+    </div>
   );
 };

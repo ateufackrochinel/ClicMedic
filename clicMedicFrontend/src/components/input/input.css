@@ -1,5 +1,21 @@
 .InputUI-field {
-  margin: 8px 0px;
-  border-radius: 4px;
-  padding: 8px;
+  width: 100%;
+  padding: 10px var(--space-3);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  margin: 0;
+}
+.InputUI-field:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(26,111,219,.15);
+}
+.InputUI-field::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
 }

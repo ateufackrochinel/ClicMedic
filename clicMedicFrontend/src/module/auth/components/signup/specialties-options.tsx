@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSpecialtiesData } from '../../../doctor/hooks/specialties.hook';
+import { useSpecialtiesData } from '@clicMedic/module/doctor/hooks/specialties.hook';
 
 export const SpecialtiesOptions = () => {
   const { specialties, specialtiesLoading } = useSpecialtiesData();

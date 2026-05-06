@@ -20,7 +20,7 @@ export default defineConfig({
   },
   resolve: {
     alias: [
-      { find: '@clicKMedic', replacement: path.resolve(__dirname, 'src') },
+      { find: '@clicMedic', replacement: path.resolve(__dirname, 'src') },
     ],
   },
 });

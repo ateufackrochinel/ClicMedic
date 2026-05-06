@@ -1,33 +1,99 @@
+/* ========== Signup card ========== */
 .RegisterFormBase-container {
-  border: 1px solid #000;
-  padding: 40px;
-  border-radius: 8px;
-  width: 400px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow-lg);
+  max-height: 90vh;
+  overflow-y: auto;
 }
+.RegisterFormBase-container h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-6);
+  font-size: var(--font-size-2xl);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
 .RegisterFormBase-form,
 .orthersMedecinProps,
 .ontherPatientProps {
   display: flex;
   flex-direction: column;
+  gap: var(--space-4);
 }
 
 .RegisterFormBase-btn {
-  background: #000;
-  color: white;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: 12px;
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-2);
+  box-shadow: var(--shadow-sm);
+}
+.RegisterFormBase-btn:hover {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
 }
 
 .RegisterFormBase-radioContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 8px 0;
-  padding: 4px;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
 }
-.selectSpecialtyField {
-  padding: 8px;
-  border-radius: 4px;
-}
-.AppUI-signUpLabel {
-  color: blue;
+.RegisterFormBase-radioContainer > div {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   cursor: pointer;
+}
+.RegisterFormBase-radioContainer label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+.RegisterFormBase-radioContainer input[type='radio'] {
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.selectSpecialtyField {
+  width: 100%;
+  padding: 10px var(--space-3);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.selectSpecialtyField:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(26,111,219,.15);
+}
+
+.AppUI-signUpLabel {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+.AppUI-signUpLabel:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
 }

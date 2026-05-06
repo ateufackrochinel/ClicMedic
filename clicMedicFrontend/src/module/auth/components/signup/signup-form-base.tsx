@@ -1,7 +1,7 @@
 import './signup.css';
 import { Field, Form, FormikProps } from 'formik';
 import { SpecialtiesOptions } from './specialties-options';
-import { InputUI } from '../../../../components/input';
+import { InputUI } from '@clicMedic/components/input';
 import { SignUpType } from '../../types';
 import { useAppContext } from '@clicMedic/components/app/contextController';
 import { useEffect } from 'react';

@@ -1,5 +1,5 @@
 import './doctor-profile.css';
-import { Medecin } from '../../../../api/types';
+import { Medecin } from '@clicMedic/api/types';
 
 export const DoctorProfile = ({ doctor }: { doctor: Medecin }) => {
   return (

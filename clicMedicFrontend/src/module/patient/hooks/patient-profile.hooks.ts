@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Patient } from '../../../api/types';
+import { Patient } from '@clicMedic/api/types';
 import { patientServices } from '../services';
 import { GetCurrentPatientType } from '../types';
+import { isValidToken } from '@clicMedic/api/utils';
 
 export const usePatientProfileData = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -12,11 +13,13 @@ export const usePatientProfileData = () => {
     const getPatient = async () => {
       try {
         setLoading(true);
-        if (token !== null) {
+        if (isValidToken(token)) {
           const data: GetCurrentPatientType =
             await patientServices.getCurrentPatient(token);
 
-          setPatient(data.patients[0]);
+          if (data.patients && data.patients.length > 0) {
+            setPatient(data.patients[0]);
+          }
         }
       } catch (e) {
         setError(e as Error);

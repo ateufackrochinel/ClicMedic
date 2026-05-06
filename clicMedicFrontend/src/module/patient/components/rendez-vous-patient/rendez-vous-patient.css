@@ -1,0 +1,24 @@
+/* ========== Rendez-vous Form (Patient) ========== */
+.RendezVousFormBase-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.RendezVousFormBase-form h2 {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.RendezVousFormBase-form .InputUI-field {
+  width: 100%;
+}
+
+.RendezVousFormBase-btn {
+  width: 100%;
+  padding: 11px;
+  margin-top: var(--space-2);
+  font-size: var(--font-size-base);
+}

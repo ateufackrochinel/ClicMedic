@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { doctorsServices } from '../services/services';
 import { GetCurrentDoctorType } from '../types';
-import { Medecin } from '../../../api/types';
+import { Medecin } from '@clicMedic/api/types';
+import { isValidToken } from '@clicMedic/api/utils';
 
 export const useDoctorProfileData = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -12,11 +13,13 @@ export const useDoctorProfileData = () => {
     const getDoctor = async () => {
       try {
         setLoading(true);
-        if (token !== null) {
+        if (isValidToken(token)) {
           const data: GetCurrentDoctorType =
             await doctorsServices.getCurrentDoctor(token);
 
-          setDoctor(data.medecins[0]);
+          if (data.medecins && data.medecins.length > 0) {
+            setDoctor(data.medecins[0]);
+          }
         }
       } catch (e) {
         setError(e as Error);

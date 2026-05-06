@@ -5,7 +5,7 @@ import { SignUp } from './components/signup';
 export const Auth = () => {
   const { showSignUpForm } = useAppContext();
   return (
-    <div>
+    <div className="Auth-page">
       {!showSignUpForm && <Login />}
       {showSignUpForm && <SignUp />}
     </div>

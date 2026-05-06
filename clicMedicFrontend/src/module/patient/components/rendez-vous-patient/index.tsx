@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import { RendezVousPatientType } from '../../types';
 import { useRendezVousPatientData } from '../../hooks/rendez-vous-patient.hooks';
 import { RendezVousPatientFormBase } from './rendez-vous-patient-form-base';
+import { formatDateForAPI } from '@clicMedic/api/dateUtils';
 
 export const RendezVousPatient = ({ medecinId }: { medecinId: string }) => {
   const initialValues: RendezVousPatientType = {
@@ -12,11 +13,11 @@ export const RendezVousPatient = ({ medecinId }: { medecinId: string }) => {
     medecinId: '',
     titre: '',
   };
-  const { error, loading, rendezVousPatient } = useRendezVousPatientData();
+  const { rendezVousPatient } = useRendezVousPatientData();
 
   const handleSubmit = (values: RendezVousPatientType) => {
     values.medecinId = medecinId;
-    values.debut = new Date(values.debut).toISOString().substring(0, 19);
+    values.debut = formatDateForAPI(values.debut);
     values.duree = Number(values.duree);
     rendezVousPatient(values);
   };

@@ -4,6 +4,7 @@ import {
   RendezVousMedecinFormBase,
 } from './rendez-vous-form-base';
 import { useRendezVousMedecinData } from '../../hooks/rendez-vous-medecin.hooks';
+import { formatDateForAPI } from '@clicMedic/api/dateUtils';
 
 export const RendezVousMedecin = ({ patientId }: { patientId: string }) => {
   const initialValues: RendezVousFormBaseProps = {
@@ -14,11 +15,11 @@ export const RendezVousMedecin = ({ patientId }: { patientId: string }) => {
     patientId: '',
     titre: '',
   };
-  const { error, loading, rendezVousMedecin } = useRendezVousMedecinData();
+  const { rendezVousMedecin } = useRendezVousMedecinData();
 
   const handleSubmit = (values: RendezVousFormBaseProps) => {
     values.patientId = patientId;
-    values.debut = new Date(values.debut).toISOString().substring(0, 19);
+    values.debut = formatDateForAPI(values.debut);
     values.duree = Number(values.duree);
     rendezVousMedecin(values);
   };

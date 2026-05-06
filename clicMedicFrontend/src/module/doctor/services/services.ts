@@ -37,11 +37,10 @@ const getHoraireDoctor = async ({
   endDate,
   startDate,
 }: GetHoraireInputType): Promise<GetHoraireType> => {
+  const params = new URLSearchParams({ startDate, endDate });
   return await get<GetHoraireType>(
-    `/clicmedic/medecin/horaire/${medecinId}?startDate=${startDate}&endDate=${endDate}`,
-    {
-      token,
-    }
+    `/clicmedic/medecin/horaire/${medecinId}?${params}`,
+    { token }
   );
 };
 

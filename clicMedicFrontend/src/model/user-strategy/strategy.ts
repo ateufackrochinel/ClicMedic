@@ -1,10 +1,10 @@
 import { SignUpType } from '@clicMedic/module/auth/types';
 
-export interface STrategy {
+export interface Strategy {
   getUser: (values: SignUpType) => SignUpType;
 }
 
-export class ConcreteUser implements STrategy {
+export class ConcreteUser implements Strategy {
   public getUser(values: SignUpType) {
     const {
       email,
@@ -57,7 +57,7 @@ export class ConcreteUser implements STrategy {
     return user;
   }
 }
-export class ConcretePatient implements STrategy {
+export class ConcretePatient implements Strategy {
   public getUser(values: SignUpType) {
     const {
       email,
@@ -84,7 +84,7 @@ export class ConcretePatient implements STrategy {
     return patient;
   }
 }
-export class ConcreteMedecin implements STrategy {
+export class ConcreteMedecin implements Strategy {
   public getUser(values: SignUpType) {
     const {
       email,
@@ -118,9 +118,9 @@ export class ConcreteMedecin implements STrategy {
 }
 
 export class UserStrategy {
-  private strategy: STrategy = {} as STrategy;
+  private strategy: Strategy = {} as Strategy;
   private signUpType: SignUpType = {} as SignUpType;
-  constructor(_strategy: STrategy, _signUpType: SignUpType) {
+  constructor(_strategy: Strategy, _signUpType: SignUpType) {
     this.strategy = _strategy;
     this.signUpType = _signUpType;
   }

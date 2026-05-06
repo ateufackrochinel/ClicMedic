@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import { DateFormBase, DateFormBaseProps } from './date-form-base';
 import { useHoraireMedecinData } from '../../hooks/horaire-medecin.hooks';
 import { HoraireMedecin } from './horaire-medecin';
+import { formatDateForAPI } from '@clicMedic/api/dateUtils';
 
 export const SearchHoraireForm = ({ medecinId }: { medecinId: string }) => {
   const initialValues: DateFormBaseProps = {
@@ -13,15 +14,12 @@ export const SearchHoraireForm = ({ medecinId }: { medecinId: string }) => {
     getHoraireMedecin,
     horaires,
     loading,
-    error,
   } = useHoraireMedecinData();
 
   const handleSubmit = (values: DateFormBaseProps) => {
     values.medecinId = medecinId;
-    values.startDate = new Date(values.startDate)
-      .toISOString()
-      .substring(0, 19);
-    values.endDate = new Date(values.endDate).toISOString().substring(0, 19);
+    values.startDate = formatDateForAPI(values.startDate);
+    values.endDate = formatDateForAPI(values.endDate);
     getHoraireMedecin(values);
   };
   return (

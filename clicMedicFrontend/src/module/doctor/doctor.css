@@ -1,29 +1,54 @@
+/* ========== Doctor Dashboard ========== */
 .Doctor-container {
   width: 100%;
+  min-height: 100vh;
   display: flex;
-  gap: 4rem;
-  padding: 0 16px;
+  background-color: var(--color-bg);
 }
 
+/* Sidebar */
 .Doctor-sidebar {
-  flex: 0 0 20%;
-}
-.Doctor-body {
-  flex: 0 0 50%;
-}
-.Doctor-appointmentContainer {
-  display: flex;
-  align-items: center;
+  flex: 0 0 260px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  padding: var(--space-6);
+  min-height: 100vh;
+  box-shadow: var(--shadow-sm);
 }
 
-.Doctor-appointment {
-  padding: 16px;
-  background: #747bff;
-  border: 1px solid #747bff;
-  margin: 4px;
+/* Main body */
+.Doctor-body {
+  flex: 1;
+  padding: var(--space-6) var(--space-8);
+  overflow-y: auto;
 }
+
+.Doctor-body > h2 {
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-primary-light);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.Doctor-appointmentContainer {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.Doctor-doctorsContainer > h2 {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-6);
+}
+
 .Doctor-medecinContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
 }

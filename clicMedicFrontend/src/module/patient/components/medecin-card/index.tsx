@@ -12,6 +12,16 @@ export const MedecinCard = () => {
     fetchMedecin();
   }, []);
 
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (ref.current !== null && event.target === ref.current) {
+        ref.current.style.display = 'none';
+      }
+    };
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, []);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -21,12 +31,6 @@ export const MedecinCard = () => {
     }
     setMedecinId(id);
   };
-
-  window.onclick = function (event) {
-    if (ref.current !== null && event.target === ref.current) {
-      ref.current.style.display = 'none';
-    }
-  };
   return (
     <div className="MedecinCard-container">
       {Array.isArray(medecins) &&
@@ -34,8 +38,7 @@ export const MedecinCard = () => {
         medecins.map(
           ({ id, lieuTravail, specialite, telephoneBureau, user }) => {
             return (
-              <>
-                <div key={id} className="MedecinCard-content">
+              <div key={id} className="MedecinCard-content">
                   <div>
                     <label className="MedecinCard-prefix"> {`Nom :`}</label>
                     <label className="MedecinCard-text">
@@ -74,8 +77,7 @@ export const MedecinCard = () => {
                       Prendre Rendez-vous
                     </button>
                   </div>
-                </div>
-              </>
+              </div>
             );
           }
         )}

@@ -1,4 +1,4 @@
-import { InputUI } from '../../../../components/input';
+import { InputUI } from '@clicMedic/components/input';
 import { LoginType } from '../../types';
 import './login.css';
 import { Field, Form, FormikProps } from 'formik';
